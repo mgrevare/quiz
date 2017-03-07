@@ -26,15 +26,15 @@ $(function(){
    currentQuestionIndex: 0,
    route: 'start',
    reset: false
-  }
+  };
 
-  function startQuiz (state, element) {
+  function startQuiz (element) {
     element.attr('id', 'reset-quiz-button');
     element.text('Reset Quiz');
     state.reset = true;
     state.currentQuestionIndex = 0;
-    renderApp(state, $('.quiz'));
-    console.log(state.currentQuestionIndex);
+    console.log(state);
+    renderApp();
   };
 
   function renderQuestions (state, element){
@@ -48,40 +48,38 @@ $(function(){
 
   function renderApp () {
     var index = state.currentQuestionIndex;
-    var element = $('.quiz');
-    element.removeClass('hidden');
-    element.children('.js-question-number').text('Question ' + (index + 1))
-    element.children('.js-question-content').text(state.questions[index].q);
-    renderQuestions(state, $('.form-questions'));
-    element.children('.current-score').text('Score: ' + state.score)
-    element.children('.num-questions').text('Question ' + (index + 1) + ' out of 5');
-    console.log(state.currentQuestionIndex);
+    if(state.questions[index]) {
+        var element = $('.quiz');
+        element.removeClass('hidden');
+        element.children('.js-question-number').text('Question ' + (index + 1));
+        element.children('.js-question-content').text(state.questions[index].q);
+        renderQuestions(state, $('.form-questions'));
+        element.children('.current-score').text('Score: ' + state.score)
+        element.children('.num-questions').text('Question ' + (index + 1) + ' out of 5');
+        console.log(state);
+    } else {
+        alert('No more questions!')
+    };
 
-  //   if (state.currentQuestionIndex = 0) {
-  //     element.children('.prev-button').attr('disabled', 'true');
-  //   }
-  //   else if (state.currentQuestionIndex = 4) {
-  //   element.children('.next-button').attr('disabled', 'true');
-  // };
 };
 
 function nextQuestion (state) {
-  // console.log(state.questions[state.currentQuestionIndex])
   if (state.questions[state.currentQuestionIndex]) {
-  state.currentQuestionIndex = state.currentQuestionIndex + 1
-  renderApp();
-}
-  else {alert('No more questions!')};
+      state.currentQuestionIndex = state.currentQuestionIndex + 1;
+      renderApp();
+  } else {
+      alert('No more questions!')
+  };
 }
 
 function prevQuestion (state) {
-  state.currentQuestionIndex = state.currentQuestionIndex - 1
+  state.currentQuestionIndex = state.currentQuestionIndex - 1;
   renderApp();
 }
 
 $('#start-quiz-button').on('click', function() {
-  // startQuiz(state, $(this));
-  nextQuestion(state);
+    startQuiz($(this));
+  // nextQuestion(state);
 
 });
 
