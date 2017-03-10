@@ -6,27 +6,31 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
+    <div class="main">
     <h1>Elementary History Quiz</h1>
 
     <div class="start-quiz">
     <h3>Are you smarter than a 5th grader?</h3>
-      <button type="button" id="start-quiz-button" name="start-quiz">Start Quiz</button>
+    <div class="results"></div>
+      <button class"clicked" type="button" id="start-quiz-button" name="start-quiz">Start Quiz</button>
     </div>
 <div class="quiz hidden">
     <h1 class="js-question-number"></h1>
     <p class="js-question-content"></p>
-    <button type="button" name="prev-question" class="prev-button">Previous question</button>
-    <button type="button" name="next-question" class="next-button">Next question</button>
-    <form class="multiple-answers" action="">
-      <section class="form-questions">
+    <button type="button" name="prev-question" class="prev-button hidden">Previous question</button>
+    <button type="button" name="next-question" id="#next-button-question" class="next-button hidden">Next question</button>
 
-  </section>
+    <form class="multiple-answers" name="user-quiz">
+      <ol type="A" class="form-questions"></ol>
+
+  <button class="js-submit-button" type="submit">Submit</button>
   </form>
-
+  <div class="js-correct-answer"></div>
     <div class="current-score"></div>
     <div class="num-questions"></div>
 
   </div>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
